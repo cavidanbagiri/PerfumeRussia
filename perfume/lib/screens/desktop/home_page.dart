@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -35,11 +37,11 @@ class HomePage extends StatelessWidget {
             //Text Section
             Container(
               width: MediaQuery.of(context).size.width * 0.5,
-              margin: EdgeInsets.only(top:20, bottom:20),
+              margin: EdgeInsets.only(top: 40, bottom: 40),
               child: const Text(
-                'Top Of The Charts',
+                '--- Our Catalogs ---',
                 style: TextStyle(
-                  // fontFamily: "OdibeeSans",
+                  fontFamily: "OdibeeSans",
                   fontSize: 56,
                 ),
                 textAlign: TextAlign.center,
@@ -52,138 +54,256 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   //Each Catalog
+                  //Skin Care
                   InkWell(
-                    onTap: (){},
+                    onTap: () {},
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                  'assets/img/catalog/womenskincare.jpg'),
+                            ),
+                          ),
+                          Text(
+                            'Skin Care',
+                            style: TextStyle(
+                                fontFamily: 'OdibeeSans', fontSize: 32),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  //Make Up
+                  InkWell(
+                    onTap: () {},
                     child: Container(
                       child: Column(
                         children: [
                           // CircleAvatar(backgroundImage: AssetImage('assets/img/lotion.jpg'),),
                           Container(
-                            width:120,
+                            width: 120,
                             height: 120,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle
+                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/img/catalog/makeup.jpg'),
                             ),
-                            child: Image(image: AssetImage('assets/img/lotion.jpg'),),
                           ),
-                          Text('Lotion', style: TextStyle(
-                            fontFamily: 'OdibeeSans',
-                            fontSize: 32
-                          ),),
+                          Text(
+                            'Make Up',
+                            style: TextStyle(
+                                fontFamily: 'OdibeeSans', fontSize: 32),
+                          ),
                         ],
                       ),
                     ),
                   ),
+                  //Fregrance
                   InkWell(
-                    onTap: (){},
+                    onTap: () {},
                     child: Container(
                       child: Column(
                         children: [
                           // CircleAvatar(backgroundImage: AssetImage('assets/img/lotion.jpg'),),
                           Container(
-                            width:120,
+                            width: 120,
                             height: 120,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle
+                            // child: Image(image: AssetImage('assets/img/fregrance.jpg'),),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                  'assets/img/catalog/fregrance.jpg'),
                             ),
-                            child: Image(image: AssetImage('assets/img/concealer.jpg'),),
                           ),
-                          Text('Concealer',style: TextStyle(
-                              fontFamily: 'OdibeeSans',
-                              fontSize: 32
-                          ),),
+                          Text(
+                            'Fregrance',
+                            style: TextStyle(
+                                fontFamily: 'OdibeeSans', fontSize: 32),
+                          ),
                         ],
                       ),
                     ),
                   ),
+                  //LipStick
                   InkWell(
-                    onTap: (){},
+                    onTap: () {},
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/img/catalog/lipstick.jpg'),
+                            ),
+                          ),
+                          Text(
+                            'LipStick',
+                            style: TextStyle(
+                                fontFamily: 'OdibeeSans', fontSize: 32),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  //Mascara
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      child: Column(
+                        children: [
+                          // CircleAvatar(backgroundImage: AssetImage('assets/img/catalog/lotion.jpg'),),
+                          Container(
+                            width: 120,
+                            height: 120,
+                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/img/catalog/mascara.jpg'),
+                            ),
+                          ),
+                          Text(
+                            'Mascara',
+                            style: TextStyle(
+                                fontFamily: 'OdibeeSans', fontSize: 32),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  //Serum
+                  InkWell(
+                    onTap: () {},
                     child: Container(
                       child: Column(
                         children: [
                           // CircleAvatar(backgroundImage: AssetImage('assets/img/lotion.jpg'),),
                           Container(
-                            width:120,
+                            width: 120,
                             height: 120,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle
+                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/img/catalog/serum.jpg'),
                             ),
-                            child: Image(image: AssetImage('assets/img/fregrance.jpg'),),
                           ),
-                          Text('Fregrance', style: TextStyle(
-                              fontFamily: 'OdibeeSans',
-                              fontSize: 32
-                          ),),
+                          Text(
+                            'Serum',
+                            style: TextStyle(
+                                fontFamily: 'OdibeeSans', fontSize: 32),
+                          ),
                         ],
                       ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){},
-                    child: Container(
-                      child: Column(
-                        children: [
-                          // CircleAvatar(backgroundImage: AssetImage('assets/img/lotion.jpg'),),
-                          Container(
-                            width:120,
-                            height: 120,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle
-                            ),
-                            child: Image(image: AssetImage('assets/img/lipstick.jpg'),),
-                          ),
-                          Text('LipStick', style: TextStyle(
-                              fontFamily: 'OdibeeSans',
-                              fontSize: 32
-                          ),),
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: (){},
-                    child: Container(
-                      child: Column(
-                        children: [
-                          // CircleAvatar(backgroundImage: AssetImage('assets/img/lotion.jpg'),),
-                          Container(
-                            width:120,
-                            height: 120,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle
-                            ),
-                            child: Image(image: AssetImage('assets/img/mascara.jpg'),),
-                          ),
-                          Text('Mascara', style: TextStyle(
-                              fontFamily: 'OdibeeSans',
-                              fontSize: 32
-                          ),),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: Column(
-                      children: [
-                        // CircleAvatar(backgroundImage: AssetImage('assets/img/lotion.jpg'),),
-                        Container(
-                          width:120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle
-                          ),
-                          child: Image(image: AssetImage('assets/img/serum.jpg'),),
-                        ),
-                        Text('Serum', style: TextStyle(
-                            fontFamily: 'OdibeeSans',
-                            fontSize: 32
-                        ),),
-                      ],
                     ),
                   ),
                 ],
               ),
             ),
+            //Text Section
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              margin: EdgeInsets.only(top: 40, bottom: 40),
+              child: const Text(
+                'Women Perfumes',
+                style: TextStyle(
+                  fontFamily: "OdibeeSans",
+                  fontSize: 46,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            //Women Perfumes -> Grid Section
+            Container(
+                margin: EdgeInsets.only(left: 20, bottom: 30),
+                height: 400,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    InkWell(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 15, right: 15, top: 15),
+                        width: 250,
+                        height: 200,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Image(
+                                image: AssetImage(
+                                    'assets/img/womenperfumes/guerlain.jpg'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(top: 5),
+                              child: Text(
+                                'Guerlain',
+                                style: GoogleFonts.arsenal(
+                                    textStyle: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20)),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(top: 8, bottom: 8),
+                              child: Text(
+                                'Aqua Allegoria Neroila Vetiver',
+                                style: GoogleFonts.arsenal(
+                                    textStyle: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18)),
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(top: 8, bottom: 8),
+                              child: Text(
+                                'Eau De Tollette',
+                                style: TextStyle(
+                                    fontSize: 11, fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.start,
+                              ),
+                            ),
+                            Container(
+                                padding: EdgeInsets.only(top: 8, bottom: 8),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '4499.22 RUR',
+                                      style: GoogleFonts.arsenal(
+                                          textStyle: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17)),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(right: 12),
+                                      padding: EdgeInsets.only(left: 8, right: 8),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.red,
+                                          width: 1,
+                                        )
+                                      ),
+                                      child: Text('%32', style: TextStyle(color: Colors.red, fontSize: 14),),
+                                    )
+                                  ],
+                                ))
+                          ],
+                        ),
+                      ),
+                      onTap: () {},
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
@@ -233,11 +353,18 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(36),
                     ),
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary : Colors.purpleAccent,
-                        padding: EdgeInsets.only(top:20, bottom: 20, left: 10, right: 10),
-                      ),
-                        onPressed: () {}, child: Text('Shop Now', style: TextStyle(fontSize: 24,),)),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.purpleAccent,
+                          padding: EdgeInsets.only(
+                              top: 20, bottom: 20, left: 10, right: 10),
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'Shop Now',
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        )),
                   ),
                 ],
               ),
