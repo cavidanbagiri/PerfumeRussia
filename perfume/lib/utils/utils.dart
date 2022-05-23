@@ -1,0 +1,4 @@
+
+
+
+const MOBILESIZE = 600;
