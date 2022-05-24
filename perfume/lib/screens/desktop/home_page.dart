@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:perfume/widgets/each_item_widget.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class HomePage extends StatelessWidget {
     'assets/img/homeslider2.jpg',
     'assets/img/homeslider3.jpg',
   ];
+
+  final ScrollController _controllerOne = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,7 @@ class HomePage extends StatelessWidget {
                 return buildImage(url_image, index, context);
               },
             )),
+
             //Text Section
             Container(
               width: MediaQuery.of(context).size.width * 0.5,
@@ -205,12 +209,24 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            //Text Section
+
+            //Women FragranceImage Section
+            Container(
+              margin: EdgeInsets.only(top: 30, bottom: 20),
+              height: 400,
+              width: MediaQuery.of(context).size.width*1,
+              child: Image(
+                image: AssetImage(
+                    'assets/img/womenperfumes/womens.jpg',),
+                fit: BoxFit.cover,
+              ),
+            ),
+            //Women FragranceText Section
             Container(
               width: MediaQuery.of(context).size.width * 0.5,
               margin: EdgeInsets.only(top: 40, bottom: 40),
               child: const Text(
-                'Women Perfumes',
+                'Fragrances for Women',
                 style: TextStyle(
                   fontFamily: "OdibeeSans",
                   fontSize: 46,
@@ -220,90 +236,139 @@ class HomePage extends StatelessWidget {
             ),
             //Women Perfumes -> Grid Section
             Container(
-                margin: EdgeInsets.only(left: 20, bottom: 30),
-                height: 400,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    InkWell(
-                      child: Container(
-                        margin: EdgeInsets.only(left: 15, right: 15, top: 15),
-                        width: 250,
-                        height: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Image(
-                                image: AssetImage(
-                                    'assets/img/womenperfumes/guerlain.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 5),
-                              child: Text(
-                                'Guerlain',
-                                style: GoogleFonts.arsenal(
-                                    textStyle: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20)),
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 8, bottom: 8),
-                              child: Text(
-                                'Aqua Allegoria Neroila Vetiver',
-                                style: GoogleFonts.arsenal(
-                                    textStyle: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18)),
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 8, bottom: 8),
-                              child: Text(
-                                'Eau De Tollette',
-                                style: TextStyle(
-                                    fontSize: 11, fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                            Container(
-                                padding: EdgeInsets.only(top: 8, bottom: 8),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      '4499.22 RUR',
-                                      style: GoogleFonts.arsenal(
-                                          textStyle: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 17)),
-                                      textAlign: TextAlign.start,
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(right: 12),
-                                      padding: EdgeInsets.only(left: 8, right: 8),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: Colors.red,
-                                          width: 1,
-                                        )
-                                      ),
-                                      child: Text('%32', style: TextStyle(color: Colors.red, fontSize: 14),),
-                                    )
-                                  ],
-                                ))
-                          ],
-                        ),
+              margin: EdgeInsets.only(left: 20, bottom: 60),
+              height: 400,
+              child: Scrollbar(
+                controller: _controllerOne,
+                // isAlwaysShown: true,
+                interactive: true,
+                // showTrackOnHover: true,
+                trackVisibility: true,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return EachItemWidget();
+                    }),
+              ),
+            ),
+
+            //Man FragranceImage Section
+            Container(
+              margin: EdgeInsets.only(top: 30, bottom: 20),
+              height: 400,
+              width: MediaQuery.of(context).size.width*1,
+              child: Image(
+                image: AssetImage(
+                  'assets/img/manperfumes/man.jpg',),
+                fit: BoxFit.cover,
+              ),
+            ),
+            //Text Section
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              margin: EdgeInsets.only(top: 40, bottom: 40),
+              child: const Text(
+                'Fragrance For Man',
+                style: TextStyle(
+                  fontFamily: "OdibeeSans",
+                  fontSize: 46,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            //Women Perfumes -> Grid Section
+            Container(
+              margin: EdgeInsets.only(left: 20, bottom: 60),
+              height: 500,
+              child: Scrollbar(
+                controller: _controllerOne,
+                // isAlwaysShown: true,
+                interactive: true,
+                // showTrackOnHover: true,
+                trackVisibility: true,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return EachItemWidget();
+                    }),
+              ),
+            ),
+
+            //MakeUp Image Section
+            Container(
+              margin: EdgeInsets.only(top: 30, bottom: 20),
+              height: 500,
+              width: MediaQuery.of(context).size.width*1,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Image(
+                        image: AssetImage(
+                          'assets/img/makeup/makeup2.jpg',),
+                        fit: BoxFit.cover,
                       ),
-                      onTap: () {},
                     ),
-                  ],
-                )),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      margin: EdgeInsets.only(left: 10, right: 10),
+                      child: Image(
+                        image: AssetImage(
+                          'assets/img/makeup/makeup.jpg',),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Image(
+                        image: AssetImage(
+                          'assets/img/makeup/makeup3.jpg',),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //Text Section
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              margin: EdgeInsets.only(top: 40, bottom: 40),
+              child: const Text(
+                'MakeUp',
+                style: TextStyle(
+                  fontFamily: "OdibeeSans",
+                  fontSize: 46,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            //Women Perfumes -> Grid Section
+            Container(
+              margin: EdgeInsets.only(left: 20, bottom: 60),
+              height: 400,
+              child: Scrollbar(
+                controller: _controllerOne,
+                // isAlwaysShown: true,
+                interactive: true,
+                // showTrackOnHover: true,
+                trackVisibility: true,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return EachItemWidget();
+                    }),
+              ),
+            ),
+
           ],
         ),
       ),

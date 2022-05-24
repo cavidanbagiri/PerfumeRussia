@@ -63,6 +63,8 @@ flutter:
     - assets/img/
     - assets/img/catalog/
     - assets/img/womenperfumes/
+    - assets/img/manperfumes/
+    - assets/img/makeup/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
