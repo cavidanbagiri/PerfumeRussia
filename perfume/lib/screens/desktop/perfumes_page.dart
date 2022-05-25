@@ -24,132 +24,13 @@ class PerfumesPage extends GetView<PerfumesController> {
                 child: Column(
                   children: [
                     Container(
-                      child: Text('some'),
-                    ),
-                    Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
-                    ),Container(
-                      child: Text('some'),
+
                     ),
                   ],
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 8, right: 8),
+                margin: EdgeInsets.all(8),
                 width: MediaQuery.of(context).size.width*0.7,
                 color: Colors.red,
                 child: Text('somes'),
