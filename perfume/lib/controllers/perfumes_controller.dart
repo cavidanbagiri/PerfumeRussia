@@ -1,9 +1,65 @@
-
-
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:perfume/models/checkbox_state.dart';
+import 'package:perfume/models/each_item_models.dart';
 
-class PerfumesController extends GetxController{
+class PerfumesController extends GetxController {
+  RxList<EachItemModel> perfumes = RxList<EachItemModel>();
 
+  var names = [
+    CheckBoxState(title: 'Biotherm'),
+    CheckBoxState(title: 'Calvin Clain'),
+    CheckBoxState(title: 'Dior'),
+    CheckBoxState(title: 'Dolce Gabbana'),
+    CheckBoxState(title: 'Hermes'),
+    CheckBoxState(title: 'Sisle'),
+    CheckBoxState(title: 'Guerlain'),
+    CheckBoxState(title: 'Lancome'),
+    CheckBoxState(title: 'Clarins'),
+    CheckBoxState(title: 'Paco Rabbane'),
+    CheckBoxState(title: 'Jean Paul Leartier'),
+    CheckBoxState(title: 'Versace'),
+    CheckBoxState(title: 'Adolfe Romance'),
+    CheckBoxState(title: 'Amouage'),
+    CheckBoxState(title: 'Better'),
+    CheckBoxState(title: 'Bvlgari'),
+    CheckBoxState(title: 'Cartier'),
+    CheckBoxState(title: 'Chloe'),
+    CheckBoxState(title: 'Davidoff'),
+    CheckBoxState(title: 'Sheich'),
+  ].obs;
 
+  // void toggle(CheckBoxState check_box, value) {
+  //   var temp;
+  //   int index = 0;
+  //   for (int i = 0; i < names.length; i++) {
+  //     if (names[i] == check_box) {
+  //       names[i].value = value;
+  //       temp = names[i];
+  //       index = i;
+  //     }
+  //   }
+  //   names[index] = temp;
+  // }
 
+  CheckboxListTile buildSingleCheckBox(CheckBoxState checkbox) {
+    return CheckboxListTile(
+        controlAffinity: ListTileControlAffinity.leading,
+        activeColor: Colors.purpleAccent,
+        value: checkbox.value,
+        title: Text('${checkbox.title}'),
+        onChanged: (value) {
+          var temp;
+          int index = 0;
+          for (int i = 0; i < names.length; i++) {
+            if (names[i] == checkbox) {
+              names[i].value = value!;
+              temp = names[i];
+              index = i;
+            }
+          }
+          names[index] = temp;
+          print('name is ${checkbox.title}');
+        });
+  }
 }

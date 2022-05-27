@@ -9,8 +9,8 @@ class EachItemWidget extends StatelessWidget {
     return InkWell(
       child: Container(
         margin: EdgeInsets.only(left: 15, right: 15, top: 15),
-        width: 250,
-        height: 200,
+        width: 200,
+        height: 100,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

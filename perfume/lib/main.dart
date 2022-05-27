@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Cavidan',
+      title: 'Perfumes',
       initialRoute: Routes.LAYOUTSEPERATOR,
       getPages: RoutesPage.pages,
       debugShowCheckedModeBanner: false,

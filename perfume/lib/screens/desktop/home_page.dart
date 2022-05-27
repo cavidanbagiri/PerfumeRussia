@@ -213,7 +213,7 @@ class HomePage extends StatelessWidget {
             //Women FragranceImage Section
             Container(
               margin: EdgeInsets.only(top: 30, bottom: 20),
-              height: 400,
+              height: 500,
               width: MediaQuery.of(context).size.width*1,
               child: Image(
                 image: AssetImage(
@@ -237,7 +237,7 @@ class HomePage extends StatelessWidget {
             //Women Perfumes -> Grid Section
             Container(
               margin: EdgeInsets.only(left: 20, bottom: 60),
-              height: 500,
+              height: 400,
               child: Scrollbar(
                 controller: _controllerOne,
                 // isAlwaysShown: true,
@@ -256,7 +256,7 @@ class HomePage extends StatelessWidget {
             //Man FragranceImage Section
             Container(
               margin: EdgeInsets.only(top: 30, bottom: 20),
-              height: 500,
+              height: 400,
               width: MediaQuery.of(context).size.width*1,
               child: Row(
                 children: [
@@ -310,7 +310,7 @@ class HomePage extends StatelessWidget {
             //Men Perfumes -> Grid Section
             Container(
               margin: EdgeInsets.only(left: 20, bottom: 60),
-              height: 500,
+              height: 400,
               child: Scrollbar(
                 controller: _controllerOne,
                 // isAlwaysShown: true,
@@ -329,7 +329,7 @@ class HomePage extends StatelessWidget {
             //MakeUp Image Section
             Container(
               margin: EdgeInsets.only(top: 30, bottom: 20),
-              height: 500,
+              height: 400,
               width: MediaQuery.of(context).size.width*1,
               child: Row(
                 children: [
@@ -383,7 +383,7 @@ class HomePage extends StatelessWidget {
             //MakeUp Perfumes -> Grid Section
             Container(
               margin: EdgeInsets.only(left: 20, bottom: 60),
-              height: 500,
+              height: 400,
               child: Scrollbar(
                 controller: _controllerOne,
                 // isAlwaysShown: true,
@@ -402,7 +402,7 @@ class HomePage extends StatelessWidget {
             //Skin Care Image Section
             Container(
               margin: EdgeInsets.only(top: 30, bottom: 20),
-              height: 500,
+              height: 400,
               width: MediaQuery.of(context).size.width*1,
               child: Row(
                 children: [
@@ -456,7 +456,7 @@ class HomePage extends StatelessWidget {
             //Skin Care Perfumes -> Grid Section
             Container(
               margin: EdgeInsets.only(left: 20, bottom: 60),
-              height: 500,
+              height: 400,
               child: Scrollbar(
                 controller: _controllerOne,
                 // isAlwaysShown: true,
