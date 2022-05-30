@@ -29,9 +29,9 @@ class EachItemService{
   }
 
   //Adding item to collection
-  Future<void> addDocument(String title, String origin, String source, String price_sale, String regular_price, String sex)async{
+  Future<String> addDocument(String title, String origin, String source, String price_sale, String regular_price, String sex)async{
     try{
-      await each_item.add(
+      final doc_ref = await each_item.add(
         {
           'title':title,
           'origin':origin,
@@ -45,9 +45,12 @@ class EachItemService{
           snackPosition: SnackPosition.BOTTOM,
           titleText: Text('Succesfully Added'),
           messageText: Text('Article Added'));
+      print('doc ref is : ${doc_ref.id}');
+      return doc_ref.id.toString();
     }
     catch(e){
       print('Error happen inside of Adding Each item Service ${e.toString()}');
+      return 'null';
     }
   }
 

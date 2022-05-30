@@ -75,8 +75,8 @@ class AdminPageController extends GetxController{
     final bytes = results?.files.first.bytes;
 
     try{
-      await storage.ref('files/$name').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
-      await eachItemService.addDocument(title, origin, source, price_sale, regular_price, sex);
+      String get_current_id = await eachItemService.addDocument(title, origin, source, price_sale, regular_price, sex);
+      await storage.ref('files/$get_current_id').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
     }catch(e){
       print('${e.toString()}');
     }
@@ -90,18 +90,6 @@ class AdminPageController extends GetxController{
     );
 
     results = res;
-
-    // if(results == null){
-    //   print('result is null');
-    // }
-    // final name = results?.files.single.name;
-    // final bytes = results?.files.first.bytes;
-    //
-    // try{
-    //   await storage.ref('files/$name').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
-    // }catch(e){
-    //   print('${e.toString()}');
-    // }
 
   }
 
