@@ -16,9 +16,7 @@ class AdminPageController extends GetxController{
   //Creating storage for Firebase Storage
   final storage = FirebaseStorage.instance;
 
-
-  //Both Of Two Functions can work
-
+  //This Adding IMage can work
   // Future<void> addImage()async{
   //   var file;
   //   String some;
@@ -41,33 +39,10 @@ class AdminPageController extends GetxController{
   //
   // }
 
-  Future<void> addImage()async{
-
-    final results = await FilePicker.platform.pickFiles(
-      allowMultiple: false,
-    );
-
-    if(results == null){
-      print('result is null');
-    }
-    final name = results?.files.single.name;
-    final bytes = results?.files.first.bytes;
-
-    try{
-      await storage.ref('files/$name').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
-    }catch(e){
-      print('${e.toString()}');
-    }
-
-  }
-
-  //Read Image
 
 
   //Creating service instance
   final eachItemService = EachItemService();
-
-
 
   var title;
   var origin;
@@ -75,6 +50,7 @@ class AdminPageController extends GetxController{
   var price_sale;
   var regular_price;
   var sex;
+  FilePickerResult? results;
 
   @override
   void onInit() {
@@ -88,11 +64,44 @@ class AdminPageController extends GetxController{
     sex = TextEditingController();
   }
 
-  void addItemToCollection(String title, String origin, String source, String price_sale, String regular_price, String sex){
+  Future<void> addItemToCollection(String title, String origin, String source, String price_sale, String regular_price, String sex, FilePickerResult? res)async{
 
-    eachItemService.addDocument(title, origin, source, price_sale, regular_price, sex);
+    results = res;
 
-    // print('${title} ${origin} ${source} ${price_sale} ${regular_price} ${sex}');
+    if(results == null){
+      print('result is null');
+    }
+    final name = results?.files.single.name;
+    final bytes = results?.files.first.bytes;
+
+    try{
+      await storage.ref('files/$name').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
+      await eachItemService.addDocument(title, origin, source, price_sale, regular_price, sex);
+    }catch(e){
+      print('${e.toString()}');
+    }
+
+  }
+
+  Future<void> addImage()async{
+
+    final res = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+    );
+
+    results = res;
+
+    // if(results == null){
+    //   print('result is null');
+    // }
+    // final name = results?.files.single.name;
+    // final bytes = results?.files.first.bytes;
+    //
+    // try{
+    //   await storage.ref('files/$name').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
+    // }catch(e){
+    //   print('${e.toString()}');
+    // }
 
   }
 

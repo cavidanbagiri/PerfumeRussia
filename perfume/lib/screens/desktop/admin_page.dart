@@ -86,7 +86,9 @@ class AdminPage extends GetView<AdminPageController> {
                     controller.source.text,
                     controller.price_sale.text,
                     controller.regular_price.text,
-                    controller.sex.text);
+                    controller.sex.text,
+                    controller.results
+                );
               },
               child: Text('Add'),
             ),

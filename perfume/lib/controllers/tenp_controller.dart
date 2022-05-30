@@ -24,9 +24,8 @@ class TempController extends GetxController{
 
   }
 
+  //Show Image inside of this string
   Future<void> downloadURLExample()async{
-
-    // downloadURL = await storage.ref('files/download.jpg').getDownloadURL();
 
     downloadURL = await storage.refFromURL('gs://perfume-99223.appspot.com/files').child('download.jpg').getDownloadURL();
 
