@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:perfume/controllers/perfumes_controller.dart';
-import 'package:perfume/models/checkbox_state.dart';
-import 'package:perfume/models/each_item_models.dart';
 import 'package:perfume/widgets/app_bar.dart';
-import 'package:perfume/widgets/each_item_widget.dart';
 import 'package:perfume/widgets/each_item_widget_stream.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PerfumesPage extends GetView<PerfumesController> {
   PerfumesPage({Key? key}) : super(key: key);
@@ -46,7 +42,8 @@ class PerfumesPage extends GetView<PerfumesController> {
                                 color: Colors.grey.withOpacity(0.1),
                                 spreadRadius: 5,
                                 blurRadius: 7,
-                                offset: Offset(0, 3), // changes position of shadow
+                                offset:
+                                    Offset(0, 3), // changes position of shadow
                               ),
                             ],
                           ),
@@ -59,12 +56,13 @@ class PerfumesPage extends GetView<PerfumesController> {
                                 child: Text(
                                   'Brands',
                                   style: GoogleFonts.arsenal(
-                                      fontWeight: FontWeight.bold, fontSize: 32),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 32),
                                 ),
                               ),
                               Container(
                                 child: Obx(
-                                      () => ListView(
+                                  () => ListView(
                                     shrinkWrap: true,
                                     padding: EdgeInsets.all(8),
                                     children: [
@@ -104,7 +102,8 @@ class PerfumesPage extends GetView<PerfumesController> {
                                 child: const TextField(
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.teal)),
+                                        borderSide:
+                                            BorderSide(color: Colors.teal)),
                                     hintText: 'Search for Product, a Brand',
                                     helperText: 'Search Which Brand Or Product',
                                     labelText: 'Search Brand',
@@ -122,8 +121,9 @@ class PerfumesPage extends GetView<PerfumesController> {
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 5, childAspectRatio: 0.6),
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 5,
+                                          childAspectRatio: 0.6),
                                   itemBuilder: (context, index) {
                                     return Container(
                                       height: 400,
@@ -132,7 +132,8 @@ class PerfumesPage extends GetView<PerfumesController> {
                                         origin: data[index]['origin'],
                                         source: data[index]['source'],
                                         price_sale: data[index]['price_sale'],
-                                        regular_price: data[index]['regular_price'],
+                                        regular_price: data[index]
+                                            ['regular_price'],
                                         sex: data[index]['sex'],
                                       ),
                                     );

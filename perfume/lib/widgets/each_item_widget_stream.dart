@@ -41,7 +41,7 @@ class EachItemWidgetStream extends StatelessWidget {
                 '${title}',
                 style: GoogleFonts.arsenal(
                     textStyle:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                 textAlign: TextAlign.left,
               ),
             ),
@@ -51,7 +51,7 @@ class EachItemWidgetStream extends StatelessWidget {
                 '${origin}',
                 style: GoogleFonts.arsenal(
                     textStyle:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                 textAlign: TextAlign.start,
               ),
             ),
@@ -59,7 +59,7 @@ class EachItemWidgetStream extends StatelessWidget {
               padding: EdgeInsets.only(top: 8, bottom: 8),
               child: Text(
                 '${source}',
-                style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.start,
               ),
             ),
@@ -72,7 +72,7 @@ class EachItemWidgetStream extends StatelessWidget {
                       '${price_sale}\$',
                       style: GoogleFonts.arsenal(
                           textStyle: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17)),
+                              fontWeight: FontWeight.bold, fontSize: 15)),
                       textAlign: TextAlign.start,
                     ),
                     Container(
@@ -85,7 +85,7 @@ class EachItemWidgetStream extends StatelessWidget {
                       )),
                       child: Text(
                         '${regular_price}',
-                        style: TextStyle(color: Colors.red, fontSize: 14),
+                        style: TextStyle(color: Colors.red, fontSize: 12),
                       ),
                     )
                   ],
