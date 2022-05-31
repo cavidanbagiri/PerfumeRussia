@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:perfume/models/checkbox_state.dart';
@@ -5,6 +7,12 @@ import 'package:perfume/models/each_item_models.dart';
 
 class PerfumesController extends GetxController {
   RxList<EachItemModel> perfumes = RxList<EachItemModel>();
+
+  //Create FirebaseFirestore object;
+  final firestore = FirebaseFirestore.instance.collection('eachitem');
+
+  //List Size;
+  var doc_size = 0;
 
   var names = [
     CheckBoxState(title: 'Biotherm'),
@@ -42,6 +50,7 @@ class PerfumesController extends GetxController {
   //   names[index] = temp;
   // }
 
+  //Change CheckBox List inside of Getx Controller
   CheckboxListTile buildSingleCheckBox(CheckBoxState checkbox) {
     return CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
@@ -62,4 +71,13 @@ class PerfumesController extends GetxController {
           print('name is ${checkbox.title}');
         });
   }
+
+  //Get All Data From Firebase Firestore
+  Stream<QuerySnapshot> getData(){
+    final temp = firestore.snapshots();
+    return temp;
+  }
+
+
+
 }
