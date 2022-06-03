@@ -16,10 +16,10 @@ class EachItemService{
   final storage = FirebaseStorage.instance;
 
   //Creating FirebaseFirestore istance for getting collection and crud operation
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  // FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   //Creating value for taking collection name
-  final each_item = FirebaseFirestore.instance.collection('eachitem');
+  final each_item_collection = FirebaseFirestore.instance.collection('eachitem');
 
   //Create FirebaseStorage for uploading image to Storage
 
@@ -31,7 +31,7 @@ class EachItemService{
   //Adding item to collection
   Future<String> addDocument(String title, String origin, String source, String price_sale, String regular_price, String sex)async{
     try{
-      final doc_ref = await each_item.add(
+      final doc_ref = await each_item_collection.add(
         {
           'title':title,
           'origin':origin,
@@ -52,6 +52,14 @@ class EachItemService{
       print('Error happen inside of Adding Each item Service ${e.toString()}');
       return 'null';
     }
+  }
+
+  //Update Data With For IMage Id;
+  Future<void> updateAndAddImageId(String id, String imageUrl)async{
+    await each_item_collection.doc(id).update({
+      'image_url':imageUrl
+    }).then((value) => print('can update')).catchError((e)=>print('Error Happen inside of update ${e.toString()}'));
+
   }
 
 }

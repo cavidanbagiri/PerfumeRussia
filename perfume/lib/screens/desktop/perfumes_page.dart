@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -115,6 +116,10 @@ class PerfumesPage extends GetView<PerfumesController> {
                                 ),
                                 // height: 100,
                               ),
+                              //Temp Container
+                              Container(
+                                child: Text('${data?[0].id}'),
+                              ),
                               //Grid Section Fields
                               GridView.builder(
                                   itemCount: data?.length,
@@ -135,8 +140,8 @@ class PerfumesPage extends GetView<PerfumesController> {
                                         regular_price: data[index]
                                             ['regular_price'],
                                         sex: data[index]['sex'],
-                                      ),
-                                    );
+                                        image_url: data[index]['image_url']),
+                                      );
                                   }),
                             ],
                           ),

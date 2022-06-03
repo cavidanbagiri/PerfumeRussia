@@ -9,7 +9,8 @@ class EachItemWidgetStream extends StatelessWidget {
       required this.source,
       required this.price_sale,
       required this.regular_price,
-      required this.sex})
+      required this.sex,
+      required this.image_url})
       : super(key: key);
 
   String? title;
@@ -18,6 +19,7 @@ class EachItemWidgetStream extends StatelessWidget {
   String? price_sale;
   String? regular_price;
   String? sex;
+  String? image_url ;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +32,8 @@ class EachItemWidgetStream extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              child: Image(
-                image: AssetImage('assets/img/womenperfumes/guerlain.jpg'),
-                fit: BoxFit.cover,
-              ),
+              child:
+                Image.network(image_url!),
             ),
             Container(
               padding: EdgeInsets.only(top: 5),
