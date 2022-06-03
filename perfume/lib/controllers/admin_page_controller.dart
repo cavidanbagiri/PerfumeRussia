@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:perfume/services/each_item_service.dart';
 
+import '../widgets/gender_dropdown_btn.dart';
+
 class AdminPageController extends GetxController{
 
   //Creating storage for Firebase Storage
@@ -16,13 +18,20 @@ class AdminPageController extends GetxController{
   //Creating service instance
   final eachItemService = EachItemService();
 
+
+  List<String> items = ['All', 'Women', 'Man', 'Kids'];
+  final selected_item = 'All'.obs;
+  void setSelected(String item){
+    selected_item.value = item;
+  }
+
   var title;
   var origin;
   var source;
   var price_sale;
   var regular_price;
-  var sex;
-  // var image_url;
+
+  //File
   FilePickerResult? results;
 
   @override
@@ -34,12 +43,11 @@ class AdminPageController extends GetxController{
     source = TextEditingController();
     price_sale = TextEditingController();
     regular_price = TextEditingController();
-    sex = TextEditingController();
   }
 
   Future<void> addItemToCollection(String title, String origin, String source, String price_sale, String regular_price, String sex, FilePickerResult? res)async{
 
-    results = res;
+    // await results = res;
 
     if(results == null){
       print('result is null');
@@ -51,11 +59,14 @@ class AdminPageController extends GetxController{
       //Adding new doc to collection and get id
       String get_current_id = await eachItemService.addDocument(title, origin, source, price_sale, regular_price, sex);
       //add current doc image and add storage data
-      TaskSnapshot taskSnapshot = await storage.ref('files/$get_current_id').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
-      //Taking Image Download Url From Future<String> and cast to String;
-      final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
-      //Get This String and Update The IMage
-      await eachItemService.updateAndAddImageId( get_current_id ,downloadUrl);
+      print('firstly get current id is ${get_current_id} and url is');
+
+       TaskSnapshot taskSnapshot = await storage.ref('files/$get_current_id').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
+       //Taking Image Download Url From Future<String> and cast to String;
+       final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+       //Get This String and Update The IMage
+       print('get current id is ${get_current_id} and url is ${downloadUrl}');
+       await eachItemService.updateAndAddImageId( get_current_id ,downloadUrl);
 
     }catch(e){
       print('Error Happen adminpage controlller inside off additem collection function ${e.toString()}');
@@ -65,11 +76,11 @@ class AdminPageController extends GetxController{
 
   Future<void> addImage()async{
 
-    final res = await FilePicker.platform.pickFiles(
+    results = await FilePicker.platform.pickFiles(
       allowMultiple: false,
     );
 
-    results = res;
+    // await results = res;
 
   }
 

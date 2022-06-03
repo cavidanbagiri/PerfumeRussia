@@ -116,10 +116,6 @@ class PerfumesPage extends GetView<PerfumesController> {
                                 ),
                                 // height: 100,
                               ),
-                              //Temp Container
-                              Container(
-                                child: Text('${data?[0].id}'),
-                              ),
                               //Grid Section Fields
                               GridView.builder(
                                   itemCount: data?.length,

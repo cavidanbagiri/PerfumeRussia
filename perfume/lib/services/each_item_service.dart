@@ -45,7 +45,6 @@ class EachItemService{
           snackPosition: SnackPosition.BOTTOM,
           titleText: Text('Succesfully Added'),
           messageText: Text('Article Added'));
-      print('doc ref is : ${doc_ref.id}');
       return doc_ref.id.toString();
     }
     catch(e){
