@@ -3,36 +3,77 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:perfume/models/checkbox_state.dart';
+import 'package:perfume/models/each_item_models.dart';
 import '../models/checkbox_state.dart';
 
 class PerfumesController extends GetxController {
+
   //Create FirebaseFirestore object;
   final firestore = FirebaseFirestore.instance.collection('eachitem');
-
   //Creating storage for Firebase Storage
   final storage = FirebaseStorage.instance;
-
   //Take Image Url
   String? downloadURL;
-
   //Second String
   String? image_eact;
-
-  //Get All Data From Firebase Firestore
-  Stream<QuerySnapshot> getData() {
-    final temp = firestore.snapshots();
-    return temp;
-  }
-
   //List Of Brands
   RxList<CheckBoxState> brands_set = RxList();
 
+  final lss = RxList<EachItemModel>([]);
+
+
+  @override
+  void onInit() {
+    lss.bindStream(getEachItemModel());
+    print('${lss.length}');
+    super.onInit();
+  }
+
+  Stream<List<EachItemModel>> getEachItemModel({String? some}) {
+    print('stream work');
+    if(some == null){
+      return firestore.snapshots().map((query) {
+        return query.docs.map((doc) {
+          return EachItemModel.fromDocumentSnapshot(doc);
+        }).toList();
+      });
+    }
+    else{
+      return firestore.where('title', isEqualTo: some).snapshots().map((query) {
+        return query.docs.map((doc) {
+          return EachItemModel.fromDocumentSnapshot(doc);
+        }).toList();
+      });
+    }
+  }
+
+  updateData() {
+    // getData(some: 'cavidan');
+    lss.bindStream(getEachItemModel());
+    print('${lss.length}');
+  }
+
+
+  Stream<QuerySnapshot> getData({String? some}) {
+    final temp;
+    if (some == null) {
+      temp = firestore.snapshots();
+      print('getdata function called null');
+    } else {
+      print('getdata function called with ${some}');
+      temp = firestore.where('title', isEqualTo: 'cavidan').snapshots();
+    }
+
+    return temp;
+  }
+
+  //Return Back Brands List
   Future getBrands() async {
     // final temp = await firestore.doc('ZSbcKUxysV5XTYCBJK0H').get();
     final query_snapshot = await firestore.get();
     //document type is List<DocumentSnapshots>
     final document = await query_snapshot.docs;
-    Set<String> temp ={};
+    Set<String> temp = {};
     await document.map((doc) {
       temp.add(doc['title']);
     }).toSet();
@@ -42,6 +83,7 @@ class PerfumesController extends GetxController {
     return brands_set;
   }
 
+  //Return Back For Changing CheckBoxState
   CheckboxListTile buildSingleCheckBoxForSet(CheckBoxState checkbox) {
     return CheckboxListTile(
       controlAffinity: ListTileControlAffinity.leading,
@@ -59,11 +101,12 @@ class PerfumesController extends GetxController {
           }
         }
         brands_set[index] = temp;
-        print('name is ${checkbox.title}');
+        //Call Again Get State Fro Showing Same Brands
+        lss.bindStream(getEachItemModel(some: checkbox.title));
+        // print('name is ${checkbox.title}');
       },
     );
   }
-
 }
 
 //List of Materials Names
@@ -72,32 +115,28 @@ class PerfumesController extends GetxController {
 //   CheckBoxState(title: 'Calvin Clain').obs,
 // ].obs;
 
-
-
 //Change CheckBox List inside of Getx Controller
-  // CheckboxListTile buildSingleCheckBox(Rx<CheckBoxState> checkbox) {
-  //   return CheckboxListTile(
-  //     controlAffinity: ListTileControlAffinity.leading,
-  //     activeColor: Colors.purpleAccent,
-  //     value: checkbox.value.value,
-  //     title: Text('${checkbox.value.title}'),
-  //     onChanged: (value) {
-  //       var temp;
-  //       int index = 0;
-  //       for (int i = 0; i < names.length; i++) {
-  //         if (names[i] == checkbox) {
-  //           names[i].value.value = value!;
-  //           temp = names[i];
-  //           index = i;
-  //         }
-  //       }
-  //       names[index] = temp;
-  //       print('name is ${checkbox.value.title}');
-  //     },
-  //   );
-  // }
-
-
+// CheckboxListTile buildSingleCheckBox(Rx<CheckBoxState> checkbox) {
+//   return CheckboxListTile(
+//     controlAffinity: ListTileControlAffinity.leading,
+//     activeColor: Colors.purpleAccent,
+//     value: checkbox.value.value,
+//     title: Text('${checkbox.value.title}'),
+//     onChanged: (value) {
+//       var temp;
+//       int index = 0;
+//       for (int i = 0; i < names.length; i++) {
+//         if (names[i] == checkbox) {
+//           names[i].value.value = value!;
+//           temp = names[i];
+//           index = i;
+//         }
+//       }
+//       names[index] = temp;
+//       print('name is ${checkbox.value.title}');
+//     },
+//   );
+// }
 
 // void toggle(CheckBoxState check_box, value) {
 //   var temp;
