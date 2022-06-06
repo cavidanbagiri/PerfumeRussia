@@ -18,20 +18,22 @@ class PerfumesController extends GetxController {
   String? image_eact;
   //List Of Brands
   RxList<CheckBoxState> brands_set = RxList();
+  //List Of Materials
+  var lss = RxList<EachItemModel>([]);
+  //Create brands for one time
+  late var brands = getBrands();
 
-  final lss = RxList<EachItemModel>([]);
 
 
   @override
   void onInit() {
     lss.bindStream(getEachItemModel());
-    print('${lss.length}');
     super.onInit();
   }
 
   Stream<List<EachItemModel>> getEachItemModel({String? some}) {
-    print('stream work');
     if(some == null){
+      print('Null WOrk');
       return firestore.snapshots().map((query) {
         return query.docs.map((doc) {
           return EachItemModel.fromDocumentSnapshot(doc);
@@ -39,6 +41,7 @@ class PerfumesController extends GetxController {
       });
     }
     else{
+      print('Value WOrk');
       return firestore.where('title', isEqualTo: some).snapshots().map((query) {
         return query.docs.map((doc) {
           return EachItemModel.fromDocumentSnapshot(doc);
@@ -46,13 +49,6 @@ class PerfumesController extends GetxController {
       });
     }
   }
-
-  updateData() {
-    // getData(some: 'cavidan');
-    lss.bindStream(getEachItemModel());
-    print('${lss.length}');
-  }
-
 
   Stream<QuerySnapshot> getData({String? some}) {
     final temp;
@@ -69,7 +65,7 @@ class PerfumesController extends GetxController {
 
   //Return Back Brands List
   Future getBrands() async {
-    // final temp = await firestore.doc('ZSbcKUxysV5XTYCBJK0H').get();
+    brands_set = await RxList([]);
     final query_snapshot = await firestore.get();
     //document type is List<DocumentSnapshots>
     final document = await query_snapshot.docs;
@@ -83,6 +79,10 @@ class PerfumesController extends GetxController {
     return brands_set;
   }
 
+  void updateD(){
+    lss.bindStream(getEachItemModel());
+  }
+
   //Return Back For Changing CheckBoxState
   CheckboxListTile buildSingleCheckBoxForSet(CheckBoxState checkbox) {
     return CheckboxListTile(
@@ -91,22 +91,33 @@ class PerfumesController extends GetxController {
       value: checkbox.value,
       title: Text('${checkbox.title}'),
       onChanged: (value) {
-        var temp;
+        var current_checkbox;
         int index = 0;
         for (int i = 0; i < brands_set.length; i++) {
           if (brands_set[i] == checkbox) {
             brands_set[i].value = value!;
-            temp = brands_set[i];
+            current_checkbox = brands_set[i];
             index = i;
+            //Call Again Get State Fro Showing Same Brands
+            if(brands_set[i].value == true){
+              lss.bindStream(getEachItemModel(some: checkbox.title));
+              print('brands set if work ${lss.length}');
+            }
+            else{
+              // lss = RxList<EachItemModel>([]);
+              lss.bindStream(getEachItemModel());
+              print('brands set else work ${lss.length}');
+            }
           }
         }
-        brands_set[index] = temp;
-        //Call Again Get State Fro Showing Same Brands
-        lss.bindStream(getEachItemModel(some: checkbox.title));
+        brands_set[index] = current_checkbox;
         // print('name is ${checkbox.title}');
       },
     );
   }
+
+
+
 }
 
 //List of Materials Names
