@@ -29,10 +29,11 @@ class EachItemService{
   }
 
   //Adding item to collection
-  Future<String> addDocument(String title, String origin, String source, String price_sale, String regular_price, String sex)async{
+  Future<String> addDocument(String category, String title, String origin, String source, String price_sale, String regular_price, String sex)async{
     try{
       final doc_ref = await each_item_collection.add(
         {
+          'category':category,
           'title':title,
           'origin':origin,
           'source':source,

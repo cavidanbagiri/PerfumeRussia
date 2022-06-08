@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EachItemModel{
 
-
+  String? category;
   String? title;
   String? origin;
   String? source;
@@ -12,9 +12,10 @@ class EachItemModel{
   String? sex;
   String? image_url;
   // EachItemModel();
-  EachItemModel.write(this.title, this.origin, this.source, this.price_sale, this.regular_price, this.sex);
+  EachItemModel.write(this.title, this.origin, this.source, this.price_sale, this.regular_price, this.sex, this.category);
 
   EachItemModel.fromDocumentSnapshot(DocumentSnapshot documentSnapshot){
+    category = documentSnapshot['category'];
     title = documentSnapshot['title'];
     origin = documentSnapshot['origin'];
     source = documentSnapshot['source'];

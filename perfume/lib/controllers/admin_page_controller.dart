@@ -1,39 +1,69 @@
-import 'dart:html';
-import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:perfume/services/each_item_service.dart';
+import '../widgets/categoryselector.dart';
 
-import '../widgets/gender_dropdown_btn.dart';
 
-class AdminPageController extends GetxController{
+class AdminPageController extends GetxController {
 
+  //**********************************************************************        Firebase Selected Item **********************************
   //Creating storage for Firebase Storage
   final storage = FirebaseStorage.instance;
 
   //Creating service instance
   final eachItemService = EachItemService();
+  //**************************************************************************************************************************************
 
 
-  List<String> items = ['All', 'Women', 'Man', 'Kids'];
-  final selected_item = 'All'.obs;
-  void setSelected(String item){
-    selected_item.value = item;
-  }
-
+  //**********************************************************************        Category Selected Item **********************************
+  late String category;
   var title;
   var origin;
   var source;
   var price_sale;
   var regular_price;
-
-  //File
   FilePickerResult? results;
+  //**************************************************************************************************************************************
 
+
+  //**********************************************************************        Category Selected Item **********************************
+  var categorySelector = CategorySelector();
+  final category_selected_item = 'Fregrance'.obs;
+  Widget returnDropDown() {
+    return DropdownButton(
+      onChanged: (item) {
+        category_selected_item(item as String);
+        category = item as String;
+      },
+      value: category_selected_item.value,
+      items: categorySelector.items
+          .map((item) => DropdownMenuItem(
+                child: Text(item),
+                value: item,
+              ))
+          .toList(),
+    );
+  }
+  // Widget second(){
+  //   return third();
+  // }
+  //**************************************************************************************************************************************
+
+
+  //**********************************************************************        Sex Selected Item **************************************
+  List<String> items = ['All', 'Women', 'Man', 'Kids'];
+  final sex_selected_item = 'All'.obs;
+  void setSelected(String item) {
+    sex_selected_item.value = item;
+  }
+  //**************************************************************************************************************************************
+
+
+  //**********************************************************************        On Init Function **************************************
   @override
   void onInit() {
     // TODO: implement onInit
@@ -44,48 +74,68 @@ class AdminPageController extends GetxController{
     price_sale = TextEditingController();
     regular_price = TextEditingController();
   }
+  //**************************************************************************************************************************************
 
-  Future<void> addItemToCollection(String title, String origin, String source, String price_sale, String regular_price, String sex, FilePickerResult? res)async{
 
+
+  //**********************************************************************        Firebase Functions *************************************
+  Future<void> addItemToCollection(
+      String category,
+      String title,
+      String origin,
+      String source,
+      String price_sale,
+      String regular_price,
+      String sex,
+      FilePickerResult? res) async {
     // await results = res;
 
-    if(results == null){
+    if (results == null) {
       print('result is null');
     }
-    final name = results?.files.single.name;
     final bytes = results?.files.first.bytes;
 
-    try{
+    try {
       //Adding new doc to collection and get id
-      String get_current_id = await eachItemService.addDocument(title, origin, source, price_sale, regular_price, sex);
+      String get_current_id = await eachItemService.addDocument(category,
+          title, origin, source, price_sale, regular_price, sex);
       //add current doc image and add storage data
       print('firstly get current id is ${get_current_id} and url is');
-
-       TaskSnapshot taskSnapshot = await storage.ref('files/$get_current_id').putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
-       //Taking Image Download Url From Future<String> and cast to String;
-       final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
-       //Get This String and Update The IMage
-       print('get current id is ${get_current_id} and url is ${downloadUrl}');
-       await eachItemService.updateAndAddImageId( get_current_id ,downloadUrl);
-
-    }catch(e){
-      print('Error Happen adminpage controlller inside off additem collection function ${e.toString()}');
+      TaskSnapshot taskSnapshot = await storage
+          .ref('files/$get_current_id')
+          .putData(bytes!, SettableMetadata(contentType: 'image/jpg'));
+      //Taking Image Download Url From Future<String> and cast to String;
+      final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+      //Get This String and Update The IMage
+      print('get current id is ${get_current_id} and url is ${downloadUrl}');
+      await eachItemService.updateAndAddImageId(get_current_id, downloadUrl);
+    } catch (e) {
+      print(
+          'Error Happen adminpage controlller inside off additem collection function ${e.toString()}');
     }
-
   }
 
-  Future<void> addImage()async{
-
+  Future<void> addImage() async {
     results = await FilePicker.platform.pickFiles(
       allowMultiple: false,
     );
-
-    // await results = res;
-
   }
-
+//****************************************************************************************************************************************
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Get Image As ImageInfo
@@ -118,8 +168,6 @@ class AdminPageController extends GetxController{
 //   print('Error is ${e.toString()}');
 // }
 
-
-
 //This Adding IMage can work
 // Future<void> addImage()async{
 //   var file;
@@ -142,4 +190,3 @@ class AdminPageController extends GetxController{
 //   });
 //
 // }
-

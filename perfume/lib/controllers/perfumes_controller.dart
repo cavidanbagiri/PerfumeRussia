@@ -20,10 +20,8 @@ class PerfumesController extends GetxController {
   RxList<CheckBoxState> brands_set = RxList();
   //List Of Materials
   var lss = RxList<EachItemModel>([]);
-  //Create brands for one time
+  //Create brands for one time otherwise all build method will call getBrands Function one time and this will be grow
   late var brands = getBrands();
-
-
 
   @override
   void onInit() {
@@ -34,7 +32,7 @@ class PerfumesController extends GetxController {
   Stream<List<EachItemModel>> getEachItemModel({String? some}) {
     if(some == null){
       print('Null WOrk');
-      return firestore.snapshots().map((query) {
+      return firestore.where('category', isEqualTo: 'Fregrance').snapshots().map((query) {
         return query.docs.map((doc) {
           return EachItemModel.fromDocumentSnapshot(doc);
         }).toList();
@@ -101,12 +99,12 @@ class PerfumesController extends GetxController {
             //Call Again Get State Fro Showing Same Brands
             if(brands_set[i].value == true){
               lss.bindStream(getEachItemModel(some: checkbox.title));
-              print('brands set if work ${lss.length}');
+              print('brands set if work ${lss.length} and values is ${brands_set[i].value}');
             }
             else{
               // lss = RxList<EachItemModel>([]);
               lss.bindStream(getEachItemModel());
-              print('brands set else work ${lss.length}');
+              print('brands set else work ${lss.length} and values is ${brands_set[i].value}');
             }
           }
         }

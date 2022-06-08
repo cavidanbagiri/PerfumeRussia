@@ -65,18 +65,20 @@ class PerfumesPage extends GetView<PerfumesController> {
                                 }
                                 if (snapshot.hasData) {
                                   var data = snapshot.data;
-                                  return Obx(() => ListView(
-                                        shrinkWrap: true,
-                                        padding: EdgeInsets.all(8),
-                                        children: [
-                                          ...controller.brands_set
-                                              .map((checkbox) {
-                                            return controller
-                                                .buildSingleCheckBoxForSet(
-                                                    checkbox);
-                                          }).toList(),
-                                        ],
-                                      ));
+                                  return Obx(
+                                    () => ListView(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.all(8),
+                                      children: [
+                                        ...controller.brands_set
+                                            .map((checkbox) {
+                                          return controller
+                                              .buildSingleCheckBoxForSet(
+                                                  checkbox);
+                                        }).toList(),
+                                      ],
+                                    ),
+                                  );
                                 } else {
                                   return const CircularProgressIndicator();
                                 }
@@ -136,11 +138,16 @@ class PerfumesPage extends GetView<PerfumesController> {
                         // height: 100,
                       ),
                       //Grid Section Fields
-                      Obx(()=>Container(
-                        child: TextButton(child: Text('${controller.lss.length}'), onPressed: (){
-                          controller.updateD();
-                        },),
-                      ),),
+                      Obx(
+                        () => Container(
+                          child: TextButton(
+                            child: Text('${controller.lss.length}'),
+                            onPressed: () {
+                              controller.updateD();
+                            },
+                          ),
+                        ),
+                      ),
                       Obx(
                         () => GridView.builder(
                             itemCount: controller.lss.length,

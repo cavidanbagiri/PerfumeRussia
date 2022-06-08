@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:perfume/controllers/admin_page_controller.dart';
-import 'package:perfume/widgets/gender_dropdown_btn.dart';
+import 'package:perfume/widgets/categoryselector.dart';
 
 class AdminPage extends GetView<AdminPageController> {
   AdminPage({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +14,9 @@ class AdminPage extends GetView<AdminPageController> {
         width: MediaQuery.of(context).size.width * 1,
         child: Column(
           children: [
+            Obx(
+              () => controller.returnDropDown()
+            ),
             Container(
               width: 300,
               height: 60,
@@ -61,9 +63,9 @@ class AdminPage extends GetView<AdminPageController> {
               child: Obx(() {
                 return DropdownButton(
                   onChanged: (item) {
-                    controller.selected_item(item as String);
+                    controller.sex_selected_item(item as String);
                   },
-                  value: controller.selected_item.value,
+                  value: controller.sex_selected_item.value,
                   items: controller.items
                       .map((item) => DropdownMenuItem(
                             child: Text(item),
@@ -88,12 +90,13 @@ class AdminPage extends GetView<AdminPageController> {
               child: ElevatedButton(
                 onPressed: () {
                   controller.addItemToCollection(
+                      controller.category,
                       controller.title.text,
                       controller.origin.text,
                       controller.source.text,
                       controller.price_sale.text,
                       controller.regular_price.text,
-                      controller.selected_item.value,
+                      controller.sex_selected_item.value,
                       controller.results);
                 },
                 child: Text('Add'),

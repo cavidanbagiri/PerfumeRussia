@@ -30,13 +30,22 @@ PreferredSizeWidget? AppBarWidget() {
               )),
           Container(
               margin: EdgeInsets.only(left: 15, right: 15),
-              child: TextButton(
-                onPressed: () {
-                  Get.toNamed(Routes.PERFUME);
+              child: MouseRegion(
+                onEnter: (event){
+                  print('Enter');
+
                 },
-                child: Text('Perfumes',
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
+                onExit: (event){
+                  print('Exit');
+                },
+                child: TextButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.PERFUME);
+                  },
+                  child: Text('Perfumes',
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold)),
+                ),
               )),
           Container(
               margin: EdgeInsets.only(left: 15, right: 15),
